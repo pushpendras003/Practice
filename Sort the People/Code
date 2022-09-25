@@ -1,0 +1,14 @@
+class Solution:
+    def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
+        l=[['' for i in range(2)]for j in range(len(heights))]
+        for i in range(len(heights)):
+                       l[i][0]=heights[i]
+                       l[i][1]=names[i]
+        print(l)
+        l=sorted(l, key=lambda x:x[0],reverse=True)
+        print(l)
+        s=[]
+        for i in range(len(heights)):
+            s.append(l[i][1])
+        return s
+          
