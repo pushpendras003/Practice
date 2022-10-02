@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int>sol(vector<int>& digits,int k){
+         if(digits[k]<9){    //if last digit<9 just increment it and return
+            digits[k]+=1;
+            return digits;
+        }else{
+             digits[k]=0;//if last digit=9 replace the digit with 0
+             if((k)==0){//if this digit was on 0th place 
+                 digits.insert(digits.begin(),1);//insert 1 at the first place of vector
+                 return digits;
+             }
+            }
+        return sol(digits,k-1);//else recurse the function
+    }
+    vector<int> plusOne(vector<int>& digits) {
+        int len=digits.size();
+        return sol(digits,len-1);
+    }
+};
