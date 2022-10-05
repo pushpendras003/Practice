@@ -1,0 +1,54 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def addOneRow(self, root: Optional[TreeNode], val: int, depth: int) -> Optional[TreeNode]:
+        if depth==1:
+            n=TreeNode(val)
+            n.left=root
+            return n
+        q1=[root]
+        c=0
+        while c<depth-2:
+            l1=len(q1)
+            while l1>0:
+                t1=q1.pop(0)
+                l1-=1
+                if t1!=None:
+                    if t1.left!=None:
+                        q1.append(t1.left)
+                    else:
+                        q1.append(None)
+                    if t1.right!=None:
+                        q1.append(t1.right)
+                    else:
+                        q1.append(None)
+            c+=1
+        print(q1)
+        i=0
+        while len(q1)>0:
+            t=q1.pop(0)
+            if t==None:
+                continue
+            else:
+                
+                if t.left!=None:
+                    t1=t.left
+                    t.left=TreeNode(val)
+                    t.left.left=t1
+                else:
+                    t.left=TreeNode(val)
+
+                if t.right!=None:
+                    t2=t.right
+                    t.right=TreeNode(val)
+                    t.right.right=t2
+                else:
+                    t.right=TreeNode(val)
+        print(q1)
+        return root
+            
+
