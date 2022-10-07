@@ -1,0 +1,25 @@
+class MyCalendarThree:
+
+    def __init__(self):
+        self.b={}
+
+    def book(self, start: int, end: int) -> int:
+        if start in self.b.keys():
+            self.b[start]+=1
+        else:
+            self.b[start]=1
+        if end in self.b.keys():
+            self.b[end]-=1
+        else:
+            self.b[end]=-1
+        sum=0
+        s=self.b.keys()
+        s=sorted(s)
+        ans=0
+        for i in s:
+            sum+=self.b[i]
+            ans=max(ans,sum)
+        return ans
+# Your MyCalendarThree object will be instantiated and called as such:
+# obj = MyCalendarThree()
+# param_1 = obj.book(start,end)
