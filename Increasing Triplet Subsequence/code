@@ -1,0 +1,16 @@
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        m=sys.maxsize
+        c=0
+        s=sys.maxsize
+        for i in range(len(nums)):
+            if nums[i]<m:
+                m=nums[i]
+                c=1
+            elif nums[i]>m and nums[i]<s:
+                s=nums[i]
+                c+=1
+            elif nums[i]>m and nums[i]>s:
+                return True
+        return False
+            
