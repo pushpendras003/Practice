@@ -1,0 +1,11 @@
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        l=[0]*26
+        for i in sentence:
+            l[ord(i)-97]+=1
+
+        m=min(l)
+        if m>0:
+            return True
+        else:
+            return False
