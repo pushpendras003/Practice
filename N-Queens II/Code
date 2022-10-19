@@ -1,0 +1,36 @@
+class Solution:
+    def totalNQueens(self, n: int) -> int:
+        l=[["."]*n for i in range(n)]
+        x=[0]
+        def isSafe(row,col,l,n)->bool:
+            dr=row
+            dc=col
+            while row>=0 and col>=0:
+                if l[row][col]=="Q":
+                    return False
+                row-=1
+                col-=1
+            row=dr
+            col=dc
+            while(col>=0):
+                if l[row][col]=="Q":
+                    return False
+                col-=1
+            row=dr
+            col=dc
+            while row<n and col>=0:
+                if l[row][col]=="Q":return False
+                row+=1
+                col-=1
+            return True
+        def helper(col,n,l,c):
+            if col==n:
+                x[0]+=1
+                return 
+            for row in range(n):
+                if (isSafe(row,col,l,n)):
+                    l[row][col]="Q"
+                    helper(col+1,n,l,c)
+                    l[row][col]="."
+        helper(0,n,l,0)
+        return x[0]
