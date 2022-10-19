@@ -1,0 +1,43 @@
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        x=[]
+        l=[["."]*n for i in range(n)]
+        def isSafe(row,col,l,n)->bool:
+            dr=row
+            dc=col
+            while row>=0 and col>=0:
+                if l[row][col]=="Q":
+                    return False
+                row-=1
+                col-=1
+            row=dr
+            col=dc
+            while(col>=0):
+                if l[row][col]=="Q":
+                    return False
+                col-=1
+            row=dr
+            col=dc
+            while row<n and col>=0:
+                if l[row][col]=="Q":return False
+                row+=1
+                col-=1
+            return True
+        def helper(col,n,l):
+            if col==n:
+                t=[]
+                print(l)
+                for i in l:
+                    s=""
+                    for j in i:
+                        s=s+j
+                    t.append(s)
+                x.append(t)
+                return
+            for row in range(n):
+                if (isSafe(row,col,l,n)):
+                    l[row][col]="Q"
+                    helper(col+1,n,l)
+                    l[row][col]="."
+        helper(0,n,l)
+        return x
