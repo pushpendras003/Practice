@@ -1,0 +1,55 @@
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        d={1:"I",4:"IV",9:"IX",40:"XL",90:"XC",400:"CD",900:"CM",5:"V",10:"X",50:"L",100:"C",500:"D",1000:"M"}
+        l=[]
+        while num>0:
+            l.insert(0,num%10)
+            num=num//10
+        print(l)
+
+    
+        s=""
+        while len(l)>0:
+            n=len(l)
+            if n==4:
+                for i in range(l[0]):
+                    s+=d[1000]
+                l.pop(0)
+            if n==3:
+                if l[0]>=5 and l[0]<9:
+                    s+=d[500]
+                    for i in range(l[0]-5):
+                        s+=d[100]
+                elif l[0]<4:
+                    for i in range(l[0]):
+                        s+=d[100]
+
+                elif l[0]==4 or l[0]==9:
+                    s+=d[l[0]*100]   
+                l.pop(0)
+            if n==2:
+                if l[0]>=5 and l[0]<9:
+                    s+=d[50]
+                    for i in range(l[0]-5):
+                        s+=d[10]
+                elif l[0]<4:
+                    for i in range(l[0]):
+                        s+=d[10]
+
+                elif l[0]==4 or l[0]==9:
+                    s+=d[l[0]*10]   
+                l.pop(0)
+            if n==1:
+                if l[0]>=5 and l[0]<9:
+                    s+=d[5]
+                    for i in range(l[0]-5):
+                        s+=d[1]
+                elif l[0]<4:
+                    for i in range(l[0]):
+                        s+=d[1]
+
+                elif l[0]==4 or l[0]==9:
+                    s+=d[l[0]]   
+                l.pop(0)
+
+        return s
