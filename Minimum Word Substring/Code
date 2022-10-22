@@ -1,0 +1,32 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        result={}
+        check={}
+        for i in t:
+            check[i]=0
+            if i not in result:
+                result[i]=1
+            else:
+                result[i]+=1
+        match=0
+        reslen=float("inf")
+        res=[-1,-1]
+        l=0
+
+        for i in range(len(s)):
+            if s[i] in check:
+                check[s[i]]+=1
+                if check[s[i]]==result[s[i]]:
+                    match+=1
+            print(res)
+            while len(result)==match:
+                if (i-l+1)<reslen:
+                    res=[l,i]
+                    reslen=i-l+1
+                if s[l] in check:
+                    check[s[l]]-=1
+                    if check[s[l]]<result[s[l]]:
+                        match-=1
+                l+=1
+        a,b=res
+        return s[a:b+1] if reslen!=float("inf") else ""
