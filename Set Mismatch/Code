@@ -1,0 +1,12 @@
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        d=[0]*len(nums)
+        for i in nums:
+            d[i-1]+=1
+        x,y=0,0
+        for i in range(len(d)):
+            if d[i]==2:
+                x=i+1
+            if d[i]==0:
+                y=i+1
+        return [x,y]
