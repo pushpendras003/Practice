@@ -1,0 +1,13 @@
+class Solution:
+    def maxLength(self, arr: List[str]) -> int:
+        l=[""]
+        s=""
+        c=0
+        for i in arr:
+            for j in l:
+                s=j+i 
+                if len(s)!=len(set(s)):continue
+                l.append(s)
+                c=max(c,len(s))
+        return c
+            
