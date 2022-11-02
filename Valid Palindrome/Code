@@ -1,0 +1,21 @@
+import re
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        t=re.sub('[\W_]+','',s)
+        t=t.lower()
+        if len(t)==1:
+            return True
+        v=len(t)%2
+        c=len(t)//2
+        if v==0:
+            if t[:c]==t[c:][::-1]:
+                return True
+            else:
+                return False
+        else:
+            if t[:c]==t[c+1:][::-1]:
+                return True
+            else:
+                return False
+
+        
