@@ -1,0 +1,20 @@
+class Solution:
+    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+        l=costs[:candidates]
+        r=costs[max(candidates,len(costs)-candidates):]
+        heapify(l)
+        heapify(r)
+        ll,lr=candidates,len(costs)-candidates-1
+        ans=0
+        for _ in range(k):
+            if not r or l and l[0]<=r[0]:
+                ans+=heappop(l)
+                if ll<=lr:
+                    heappush(l,costs[ll])
+                    ll+=1
+            else:
+                ans+=heappop(r)
+                if ll<=lr:
+                    heappush(r,costs[lr])
+                    lr-=1
+        return ans
