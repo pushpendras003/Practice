@@ -1,0 +1,57 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+from functools import cmp_to_key
+class Solution:
+    def minimumOperations(self, root: Optional[TreeNode]) -> int:
+        def cmp(a,b):
+            return a-b
+        
+        def minSwaps(a):
+            l=len(a)
+            m={}
+            for i in range(l):
+                m[a[i]]=i
+            a=sorted(a,key=cmp_to_key(cmp))
+            visited=[False for col in range(l)]
+            ans=0
+            for i in range(l):
+                if visited[i] or m[a[i]]==i:
+                    continue
+                j,cycle_size=i,0
+                while (visited[j]==False):
+                    visited[j]=True
+                    j=m[a[j]]
+                    cycle_size+=1
+                if cycle_size>0:
+                    ans+=(cycle_size-1)
+            return ans 
+        
+        
+        q=[root]
+        o=0
+        while True:
+            if len(q)==0:
+                break
+            n=len(q)
+            a=[]
+            while n>0:
+                t=q.pop(0)
+                a.append(t.val)
+                if t.left!=None:
+                    q.append(t.left)
+                if t.right!=None:
+                    q.append(t.right)
+                n-=1
+            o+=minSwaps(a)
+        return o
+            
+            
+            
+            
+                    
+        
