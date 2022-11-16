@@ -1,0 +1,18 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        j=0
+        s=0
+        maxsum=nums[0]
+        for i in range(len(nums)):
+            s+=nums[i]
+            maxsum=max(maxsum,s)
+            if s<=0:
+                s=0
+
+        return maxsum
+
+            
+
+
+        
+
