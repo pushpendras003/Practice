@@ -1,0 +1,30 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        def isValid(i,j)->bool:
+            for k in range(9):
+                if k==i:
+                    continue
+                if board[k][j]==board[i][j]:
+                    return False
+            for k in range(9):
+                if k==j:
+                    continue
+                if board[i][k]==board[i][j]:
+                    return False
+            for k in range(9):
+                if (3*(i//3)+k//3)==i and (3*(j//3)+k%3)==j:
+                    continue
+                if board[3*(i//3)+k//3][3*(j//3)+k%3]==board[i][j]:
+                    return False
+            return True
+
+
+        
+
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j]!=".":
+                    if isValid(i,j)==False:
+                        return False
+        return True
