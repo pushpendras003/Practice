@@ -1,0 +1,34 @@
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        n=len(startTime)
+        memo=[-1]*50001
+        def getNext(arr,currend,l):
+            r=n-1
+            result=n+1
+            while l<=r:
+                mid=(l+r)//2
+                if arr[mid][0]>=currend:
+                    result=mid
+                    r=mid-1
+                else:
+                    l=mid+1
+            return result
+
+        def helper(arr,i):
+            if i>=len(arr):
+                return 0
+            if memo[i]!=-1:
+                return memo[i]
+            next=getNext(arr,arr[i][1],i+1)
+            pick=arr[i][2]+helper(arr,next)
+            notpick=helper(arr,i+1)
+            memo[i]=max(pick,notpick)
+            return memo[i]
+
+
+        arr=[]
+        for i in range(len(startTime)):
+            arr.append([startTime[i],endTime[i],profit[i]])
+        arr=sorted(arr,key=lambda v:v[0])
+        return helper(arr,0)
+
