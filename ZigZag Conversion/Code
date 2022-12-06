@@ -1,0 +1,28 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        l=[[] for i in range(numRows)]
+        t=0
+        v=1
+        if numRows==1:
+            return s
+        for i in s:
+            if v==1 and t<numRows-1:
+                l[t].append(i)
+                t+=1
+            elif t==numRows-1:
+                v=0
+                l[t].append(i)
+                t-=1
+            elif v==0 and t>0:
+                l[t].append(i)
+                t-=1
+            elif t==0:
+                v=1
+                l[t].append(i)
+                t+=1
+        print(l)
+        ans=""
+        for i in l:
+            ans+="".join(i)
+        return ans
+            
