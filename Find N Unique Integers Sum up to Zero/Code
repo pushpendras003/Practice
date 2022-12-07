@@ -1,0 +1,16 @@
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        l=[]
+        t=-(n//2)
+        if n%2!=0:
+            for i in range(n):
+                l.append(t+i)
+        else:
+            for i in range(n+1):
+                if t+i==0:continue
+                l.append(t+i)
+        return l
+
+
+
+            
