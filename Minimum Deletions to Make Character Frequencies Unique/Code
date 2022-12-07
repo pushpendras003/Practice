@@ -1,0 +1,15 @@
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        c=Counter(s)
+        l=[]
+        for i,j in c.items():
+            l.append(j)
+        r=0
+        l.sort()
+        for i in range(len(l)-1,0,-1):
+            print(l,r)
+            if l[i]<=l[i-1]:
+                while l[i-1]>=l[i] and  l[i-1]>0:
+                    l[i-1]-=1
+                    r+=1
+        return r
