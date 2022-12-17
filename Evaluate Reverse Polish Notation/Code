@@ -1,0 +1,30 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+
+        s=[]
+        o=["+","-","*","/"]
+        def helper(i,j,m):
+            if m=="+":
+                return int(i)+int(j)
+            if m=="*":
+                return int(i)*int(j)
+            if m=="-":
+                return int(i)-int(j)
+            if m=="/":
+                t=int(i)/int(j)
+                if t<0:
+                    return ceil(t)
+                else:
+                    return floor(t)
+
+        for i in tokens:
+            #print(s)
+            if i in o:
+                a=s.pop()
+                b=s.pop()
+                t=helper(b,a,i)
+                s.append(t)
+            else:
+                s.append(i)
+        return int(s[0])
+
