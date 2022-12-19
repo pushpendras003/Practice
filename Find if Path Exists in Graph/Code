@@ -1,0 +1,31 @@
+from collections import deque
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        d={}
+        for i in edges:
+            if i[0] in d:
+                d[i[0]].append(i[1])
+            else:
+                d[i[0]]=[i[1]]
+            
+            if i[1] in d:
+                d[i[1]].append(i[0])
+            else:
+                d[i[1]]=[i[0]]
+        
+        q=deque()
+        q.append(source)
+
+        visited=[False]*n
+        while q:
+            t=q.popleft()
+            if t==destination:
+                return True
+            for i in d[t]:
+                if not visited[i]:
+                    q.append(i)
+                    visited[i]=True
+
+                    
+
+        return False
