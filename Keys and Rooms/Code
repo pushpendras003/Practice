@@ -1,0 +1,20 @@
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        n=len(rooms)
+        visited=[False]*n
+        visited[0]=True
+        cv=[0]
+        while cv:
+            t=cv.pop()
+            if visited[t]==True:
+                for i in rooms[t]:
+                    if visited[i]==True:
+                        continue
+                    visited[i]=True
+                    cv.append(i)
+        
+        #print(visited)
+        for i in visited:
+            if i==False:
+                return False
+        return True
