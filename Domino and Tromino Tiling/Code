@@ -1,0 +1,15 @@
+class Solution:
+    def numTilings(self, n: int) -> int:
+        m=1000000007
+        ppre,pre=1,1
+        up,dn=0,0
+        for i in range(2,n+1):
+            curr=ppre+pre+up+dn
+            up_curr=dn+ppre
+            dn_curr=up+ppre
+
+            ppre=pre
+            pre=curr
+            up=up_curr
+            dn=dn_curr
+        return pre%m
