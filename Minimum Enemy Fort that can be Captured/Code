@@ -1,0 +1,17 @@
+class Solution:
+    def captureForts(self, forts: List[int]) -> int:
+        
+        e,m=-1,-1
+        ans=0
+        for i in range(len(forts)):
+            if forts[i]==1:
+                m=i
+            if forts[i]==-1:
+                e=i
+            if e!=-1 and m!=-1:
+                ans=max(ans,abs(m-e)-1)
+                if m<e:
+                    m=-1
+                else:
+                    e=-1
+        return ans
