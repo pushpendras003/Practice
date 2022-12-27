@@ -1,0 +1,21 @@
+class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], aR: int) -> int:
+
+        l=[]
+        for i in range(len(rocks)):
+            l.append([abs(rocks[i]-capacity[i]),capacity[i],rocks[i]])
+        l=sorted(l,key=lambda x:x[0])
+        c=0
+        print(l)
+        for i in range(len(l)):
+            if l[i][0]==0:
+                c+=1
+            elif l[i][0]<=aR and aR>0:
+                aR-=l[i][0]
+                l[i][0]=0
+                c+=1
+                #print(aR)
+        #print(l)
+        return c
+            
+
