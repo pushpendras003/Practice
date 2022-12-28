@@ -1,0 +1,11 @@
+class Solution:
+    def minStoneSum(self, p: List[int], k: int) -> int:
+        l=[-i for i in p]
+        heapify(l)
+        for i in range(k):
+            heapreplace(l,l[0]//2)
+        return -sum(l)
+        
+
+        
+
