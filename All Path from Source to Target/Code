@@ -1,0 +1,20 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        if not graph:
+            return []
+        gl=len(graph)-1
+        stack=[(0,[0])]
+        l=[]
+        d={}
+        for i in range(len(graph)):
+            d[i]=graph[i]
+
+        while stack:
+            n,p=stack.pop()
+            if n==gl:
+                l.append(p)
+            for i in d[n]:
+                stack.append((i,p+[i]))
+        return l
+
+        
