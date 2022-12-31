@@ -1,0 +1,31 @@
+class Solution:
+    def uniquePathsIII(self, grid: List[List[int]]) -> int:
+        self.l=0
+        x=0
+        y=0
+        m=len(grid)
+        n=len(grid[0])
+        e=1
+        g=grid
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]==1:
+                     x,y=(i,j)
+                elif grid[i][j]==0:
+                    e+=1
+        def helper(x,y,m,n,e):
+            if not(0<=x<m and 0<=y<n and g[x][y]>=0):
+                return 
+            if g[x][y]==2:
+                self.l+=e==0
+                return
+            g[x][y]=-2
+            helper(x+1,y,m,n,e-1)
+            helper(x-1,y,m,n,e-1)
+            helper(x,y+1,m,n,e-1)
+            helper(x,y-1,m,n,e-1)
+            g[x][y]=0
+        helper(x,y,m,n,e)
+        return self.l
+
+
