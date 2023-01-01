@@ -1,0 +1,22 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        l1=[]
+        l2=[]
+        s=s.split(" ")
+        for i in pattern:
+            if i not in l1:
+                l1.append(i)
+        for i in s:
+            if i not in l2:
+                l2.append(i)
+        if len(l1)!=len(l2):
+            return False
+        d={}
+        for i in range(len(l1)):
+            d[l2[i]]=l1[i]
+        ans=''
+        for i in s:
+            ans+=d[i]
+        return ans==pattern
+
+            
