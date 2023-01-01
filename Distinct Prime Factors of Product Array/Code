@@ -1,0 +1,24 @@
+ class Solution:
+    def distinctPrimeFactors(self, nums: List[int]) -> int:
+        d=defaultdict(int)
+        l=[]
+        n=max(nums)
+        def helper(n):
+            if n<=1:
+                return False
+            for i in range(2,n):
+                if n%i==0:
+                    return False
+            return True
+        for i in range(2,n+1):
+            if helper(i)==True:
+                l.append(i)
+        print(l)
+        for i in nums:
+            for j in l:
+                if i%j==0:
+                    d[j]==1
+        return len(d)
+            
+            
+        
