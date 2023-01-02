@@ -1,0 +1,16 @@
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        fC=0
+        C=0
+        for i in range(len(word)):
+            if i==0 and word[i].isupper():
+                fC=1
+            if word[i].isupper():
+                C+=1
+        if C==fC:
+            return True
+        if C==len(word):
+            return True
+        if C==0:
+            return True
+        return False
