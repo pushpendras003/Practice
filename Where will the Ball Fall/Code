@@ -1,0 +1,30 @@
+class Solution:
+    def findBall(self, grid: List[List[int]]) -> List[int]:
+        m=len(grid)
+        n=len(grid[0])
+        ballpos=[[[-2,-2]for i in range(n)] for _ in range(m+1)]
+        for i in range(n):
+            ballpos[0][i][0]=2
+            ballpos[0][i][1]=i
+        #print(ballpos)
+        for i in range(m):
+            for j in range(n):
+                if ballpos[i][j][0]==2:
+                    if j==0 and grid[i][j]==-1:
+                        continue
+                    elif j==n-1 and grid[i][j]==1:
+                        continue
+                    elif grid[i][j]==1 and  grid[i][j+1]==1:
+                        ballpos[i+1][j+1][0]=2
+                        ballpos[i+1][j+1][1]=ballpos[i][j][1]
+                    elif grid[i][j]==-1 and grid[i][j-1]==-1:
+                        ballpos[i+1][j-1][0]=2
+                        ballpos[i+1][j-1][1]=ballpos[i][j][1]
+        
+        l=[-1]*n
+        #print(ballpos)
+        for i in range(n):
+            if ballpos[m][i][0]==2:
+                l[ballpos[m][i][1]]=i
+        return l
+                
