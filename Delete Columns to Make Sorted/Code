@@ -1,0 +1,18 @@
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        m=0
+        for i in strs:
+            m=max(m,len(i))
+        #c=ord('a')
+        ans=0
+        for i in range(m):
+            c=ord('a')
+            for j in range(len(strs)):
+                if ord(strs[j][i])>=c:
+                    c=ord(strs[j][i])
+                    continue
+                if ord(strs[j][i])<c:
+                    ans+=1
+                    break
+        return ans
+                
