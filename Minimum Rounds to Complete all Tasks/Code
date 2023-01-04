@@ -1,0 +1,21 @@
+class Solution:
+    def minimumRounds(self, tasks: List[int]) -> int:
+        d=defaultdict(int)
+        for i in tasks:
+            d[i]+=1
+        s=0
+        for i ,j in d.items():
+
+            while j>0:
+                if j%3==0:
+                    s+=j//3
+                    j=0
+                elif j%2!=0:
+                    j-=3
+                    s+=1
+                else:
+                    j-=2
+                    s+=1
+            if j<0:
+                return -1
+        return s
