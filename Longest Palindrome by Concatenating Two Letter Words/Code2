@@ -1,0 +1,19 @@
+class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        m=[[0]*26 for _ in range(26)]
+        ans=0
+        for i in words:
+            x=ord(i[0])-ord('a')
+            y=ord(i[1])-ord('a')
+            if m[y][x]>0:
+                ans+=4
+                m[y][x]-=1
+            else:
+                m[x][y]+=1
+        for i in range(26):
+            if m[i][i]>0:
+                ans+=2
+                break
+        return ans        
+        
+        
