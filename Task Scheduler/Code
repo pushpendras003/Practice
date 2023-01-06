@@ -1,0 +1,18 @@
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        l=[0]*26
+        maxx=0
+        maxcount=0
+        for i in tasks:
+            l[ord(i)-ord('A')]+=1
+            if maxx==l[ord(i)-ord('A')]:
+                maxcount+=1
+            elif maxx<l[ord(i)-ord('A')]:
+                maxx=l[ord(i)-ord('A')]
+                maxcount=1
+            partcount=maxx-1
+            partlength=n-(maxcount-1)
+            emptyslots=partlength*partcount
+            avialableslots=len(tasks)-maxx*maxcount
+            idles=max(0,emptyslots-avialableslots)
+        return len(tasks)+idles
