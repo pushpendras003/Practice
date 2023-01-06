@@ -1,0 +1,16 @@
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        
+        bucket=[0]*(max(costs)+1)
+        ans=0
+        for i in costs:
+            bucket[i]+=1
+        for i in range(len(bucket)):
+            if coins<i:
+                break
+            if bucket[i]>0:
+                ans+=min(bucket[i],coins//i)
+                coins-=min(bucket[i]*i,coins)
+        return ans 
+
+    
