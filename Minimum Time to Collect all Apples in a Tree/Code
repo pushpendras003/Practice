@@ -1,0 +1,22 @@
+class Solution:
+    def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
+        d=defaultdict(list)
+        for i,j in edges:
+            d[i].append(j)
+            d[j].append(i)
+        visited=set()
+        def helper(n):
+            if n in visited:
+                return 0
+            visited.add(n)
+            sec=0
+            for i in d[n]:
+                sec+=helper(i)
+            if sec>0:
+                sec+=2
+                return sec
+            return 2 if hasApple[n] else 0
+        return max(helper(0)-2,0)
+            
+            
+            
