@@ -1,0 +1,24 @@
+class Solution:
+    ans=0
+    def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
+
+        d=defaultdict(list)
+        for i,j in edges:
+            d[i].append(j)
+            d[j].append(i)
+        
+        dp=[0]*n
+        def helper(node,parent):
+            c=Counter()
+            for child in d[node]:
+                if child==parent: continue
+                c+=helper(child,node)
+            c[labels[node]]+=1
+            dp[node]=c[labels[node]]
+            return c
+                                
+        
+        helper(0,None)
+        return dp
+
+        
