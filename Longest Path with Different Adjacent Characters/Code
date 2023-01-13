@@ -1,0 +1,24 @@
+class Solution:
+    def longestPath(self, parent: List[int], s: str) -> int:
+        d=defaultdict(list)
+        for i in range(len(parent)):
+            d[parent[i]].append(i)
+        def helper(n):
+            if n==None:
+                return 1
+            length=0
+            secondlength=0
+            for i in d[n]:
+                curr=helper(i)
+                if s[i]!=s[n]:
+                    if curr>length:
+                        secondlength=length
+                        length=curr
+                    elif curr>secondlength:
+                        secondlength=curr
+                self.cnt=max(self.cnt,length+secondlength+1)
+            return length+1
+            
+        self.cnt=1
+        helper(0)
+        return self.cnt
