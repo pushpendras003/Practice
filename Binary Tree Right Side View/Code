@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if root==None:
+            return []
+        s=[root]
+        ans=[]
+        while s:
+            t=s[-1]
+            l=[]
+            ans.append(t.val)
+            for i in s:
+                if i.left:
+                    l.append(i.left)
+                if i.right:
+                    l.append(i.right)
+            s=l
+        return ans
+            
+            
