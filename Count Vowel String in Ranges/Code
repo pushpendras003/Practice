@@ -1,0 +1,16 @@
+class Solution:
+    def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
+        l=[]
+        dp=[0]*(len(words)+1)
+        v=['a','e','i','o','u']
+        for i in range(len(words)):
+            t=0
+            if words[i][0] in v and words[i][-1] in v:
+                t=1
+            dp[i+1]=dp[i]+t
+        ans=[]
+        for i in range(len(queries)):
+            ans.append(dp[queries[i][1]+1]-dp[queries[i][0]])
+        return ans
+            
+            
