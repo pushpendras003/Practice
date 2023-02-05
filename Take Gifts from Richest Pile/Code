@@ -1,0 +1,19 @@
+class Solution:
+    def pickGifts(self, gifts: List[int], k: int) -> int:
+        
+        gifts.sort()
+        n=len(gifts)-1
+        for i in range(k):
+            #print(gifts)
+            t1=gifts.pop()
+            t=floor(math.sqrt(t1))
+            i=n-1
+            while i>=0 and gifts[i]>t:
+                i-=1
+                #print(i)
+            if i==n-1:
+                gifts.append(t)
+            else:
+                gifts.insert(i+1,t)
+
+        return sum(gifts)
