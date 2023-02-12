@@ -1,0 +1,19 @@
+from collections import defaultdict
+class Solution:
+    def minimumFuelCost(self, roads: List[List[int]], seats: int) -> int:
+        d=defaultdict(list)
+        for i,j in roads:
+            d[i].append(j)
+            d[j].append(i)
+
+        def helper(u,p):
+            cnt=1
+            for i in d[u]:
+                if i==p:continue
+                cnt+=helper(i,u)
+            if u!=0:
+                self.ans+=math.ceil(cnt/seats)
+            return cnt
+        self.ans=0
+        helper(0,-1)
+        return self.ans
