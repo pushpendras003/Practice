@@ -1,0 +1,19 @@
+class Solution:
+    def countOdds(self, low: int, high: int) -> int:
+        c=0
+        if low%2==0 and high%2==0:
+            d=high-low
+            if d==1:
+                c+=1
+            else:
+                c+=d//2
+        elif (low%2!=0 and high%2==0) or (low%2==0 and high%2!=0):
+            c+=1
+            d=high-low
+            c+=d//2
+        elif low%2!=0 and high%2!=0:
+            c+=1
+            d=high-low
+            c+=d//2
+        return c
+
