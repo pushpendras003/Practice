@@ -1,0 +1,15 @@
+class Solution:
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        v=0
+        for i in num:
+            v+=i
+            v*=10
+        v=v//10
+        #print(v)
+        v=v+k
+        l=[]
+        while v>0:
+            t=v%10
+            v=v//10
+            l.append(t)
+        return l[::-1]
