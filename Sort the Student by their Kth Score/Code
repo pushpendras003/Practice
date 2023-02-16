@@ -1,0 +1,16 @@
+class Solution:
+    def sortTheStudents(self, score: List[List[int]], k: int) -> List[List[int]]:
+        m=len(score)
+        n=len(score[0])
+        l=[]
+        for i in range(m):
+            l.append([score[i][k],i])
+        
+        l=sorted(l,key=lambda x:x[0],reverse=True)
+        nl=[[ 0 for i in range(n)] for j in range(m)]
+        for i in range(len(l)):
+            nl[i]=score[l[i][1]]
+        return nl
+            
+            
+        
