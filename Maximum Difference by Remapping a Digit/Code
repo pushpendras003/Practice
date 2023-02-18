@@ -1,0 +1,41 @@
+class Solution:
+    def minMaxDifference(self, num: int) -> int:
+        
+        s=str(num)
+        l=list(s)
+        t="n"
+        for i in range(len(s)):
+            if l[i]=='9':
+                continue
+            else:
+                t=l[i]
+                #print(t)
+                while i<len(l):
+                    #print(l)
+                    if l[i]==t:
+                        l[i]='9'
+                    
+                    i+=1
+                break
+        b=int("".join(l))
+        #print(b)
+        #print(l)
+        l=list(s)
+        for i in range(len(s)):
+            if l[i]=='0':
+                continue
+            else:
+                t=l[i]
+                while i<len(s):
+                    if l[i]==t:
+                        l[i]='0'
+                        
+                    i+=1
+                break
+        #print(l)
+        s=int(''.join(l))
+        #print(s)
+        return b-s
+        
+                
+        
