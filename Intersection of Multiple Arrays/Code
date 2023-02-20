@@ -1,0 +1,14 @@
+class Solution:
+    def intersection(self, nums: List[List[int]]) -> List[int]:
+        
+        n=len(nums)
+        d=defaultdict(int)
+        for i in range(len(nums)):
+            for j in range(len(nums[i])):
+                d[nums[i][j]]+=1
+        l=[]
+        for i,j in d.items():
+            if j==n:
+                l.append(i)
+        l.sort()
+        return l
