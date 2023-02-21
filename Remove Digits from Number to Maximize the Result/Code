@@ -1,0 +1,17 @@
+class Solution:
+    def removeDigit(self, number: str, digit: str) -> str:
+        v=0
+        
+        l=[]
+        heapify(l)
+        for i in range(len(number)-1,-1,-1):
+            if number[i]==digit:
+                v=int(number[:i]+number[i+1:])
+                heappush(l,-v)
+        
+        return str(-1*heappop(l))
+                
+        
+                
+            
+        
