@@ -1,0 +1,13 @@
+class Solution:
+    def divisibilityArray(self, word: str, m: int) -> List[int]:
+        l=[0]*len(word)
+        v=0
+        for i in range(len(word)):
+            v=v*10
+            v+=int(word[i])
+            v=v%m
+            if v==0:
+                l[i]=1
+        return l
+            
+        
