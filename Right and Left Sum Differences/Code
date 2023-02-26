@@ -1,0 +1,16 @@
+class Solution:
+    def leftRigthDifference(self, nums: List[int]) -> List[int]:
+        n=len(nums)
+        lr=[0]*n
+        rr=[0]*n        
+        for i in range(n-1):
+            lr[i+1]+=lr[i]+nums[i]
+        for i in range(n-1,0,-1):
+            rr[i-1]=rr[i]+nums[i]
+        #print(lr)
+        #print(rr)
+        l=[]
+        for i in range(n):
+            l.append(abs(lr[i]-rr[i]))
+        return l
+        
