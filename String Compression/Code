@@ -1,0 +1,29 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        def helper(chars):
+            arr=[]
+            i=0
+            while i<len(chars):
+                j=i+1
+                c=1
+                while j<len(chars) and chars[j]==chars[i]:
+                    j+=1
+                    c+=1
+                if c==1:
+                    arr.append(chars[i])
+                elif c>1 and c<10:
+                    arr.append(chars[i])
+                    arr.append(str(c))
+                else:
+                    arr.append(chars[i])
+                    t=str(c)
+                    l=0
+                    while l<len(t):
+                        arr.append(t[l])
+                        l+=1
+                i=j
+            return arr
+        t=helper(chars)
+        for i in range(len(t)):
+            chars[i]=t[i]
+        return len(t)
