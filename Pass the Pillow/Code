@@ -1,0 +1,16 @@
+class Solution:
+    
+    def passThePillow(self, n: int, time: int) -> int:
+        person=1
+        c=0
+        while time>0:
+            if c==0:
+                person+=1
+                if person==n:
+                    c=-1
+            elif c==-1:
+                person-=1
+                if person==1:
+                    c=0
+            time-=1
+        return person
