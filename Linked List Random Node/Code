@@ -1,0 +1,29 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+
+    def __init__(self, head: Optional[ListNode]):
+        self.head=head
+        self.N=0
+        h=head
+        while h:
+            self.N+=1
+            h=h.next
+        
+
+    def getRandom(self) -> int:
+        n=random.randint(0,self.N-1)
+        p=self.head
+        while n>0:
+            p=p.next
+            n-=1
+        return p.val
+
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(head)
+# param_1 = obj.getRandom()
