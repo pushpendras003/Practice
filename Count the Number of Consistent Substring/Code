@@ -1,0 +1,15 @@
+class Solution:
+    def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
+        d=defaultdict(int)
+        for i in allowed:
+            d[i]+=1
+        ans=0
+        for i in words:
+            f=0
+            for j in i:
+                if d[j]==0:
+                    f=1
+                    break
+            if f==0:
+                ans+=1
+        return ans 
