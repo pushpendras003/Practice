@@ -1,0 +1,20 @@
+class Solution:
+    def checkValidGrid(self, grid: List[List[int]]) -> bool:
+        n=len(grid)
+        if grid[0][0]!=0:
+            return False
+        i=j=0
+        v=0
+        a=[[2,1],[2,-1],[-2,1],[-2,-1],[1,2],[-1,2],[1,-2],[-1,-2]]
+        while v<n*n-1:
+            f=0
+            for p,q in a:
+                if 0<=i+p<n and 0<=j+q<n:
+                    if grid[i+p][j+q]==v+1:
+                        f=1
+                        i=i+p
+                        j=j+q
+                        v=v+1
+            if f==0:
+                return False
+        return True
