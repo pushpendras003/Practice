@@ -1,0 +1,30 @@
+class Solution(object):
+    def minReorder(self, n, connections):
+        """
+        :type n: int
+        :type connections: List[List[int]]
+        :rtype: int
+        """
+        d=defaultdict(list)
+        for i,j in connections:
+            d[i].append(j)
+            d[j].append(-i)
+        self.c=0
+        #print(d)
+        visited=set()
+        def dfs(node):
+            visited.add(abs(node))
+            for i in d[abs(node)]:
+                if abs(i) not in visited:
+                    visited.add(i)
+                    if i>0:
+                        #print(i,node)
+                        self.c+=1
+                    dfs(i)
+        dfs(0)
+        return self.c
+
+
+        
+        
+        
