@@ -1,0 +1,39 @@
+class Solution(object):
+    def countPairs(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+
+        d=defaultdict(list)
+        for i,j in edges:
+            d[i].append(j)
+            d[j].append(i)
+        
+
+        self.count=0
+        def dfs(i):
+          if i not in visited:
+            visited.add(i)
+            self.count+=1
+            for j in d[i]:
+              if j not in visited:
+                dfs(j)
+          return self.count
+        total=n*(n-1)//2
+        visited=set()
+        for i in range(n):
+          if i not in visited:
+            dfs(i)
+            total-=self.count*(self.count-1)//2
+            self.count=0
+            
+
+        
+        return total
+            
+
+
+
+        
