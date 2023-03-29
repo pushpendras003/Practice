@@ -1,0 +1,13 @@
+class Solution:
+    def maxSatisfaction(self, satisfaction: List[int]) -> int:
+        satisfaction.sort()
+        s=satisfaction
+        @cache
+        def helper(i,t):
+            if i>=len(s):
+                return 0
+            not_taken=helper(i+1,t)
+            taken=(s[i]*t)+helper(i+1,t+1)
+            return max(taken,not_taken)
+
+        return helper(0,1)
