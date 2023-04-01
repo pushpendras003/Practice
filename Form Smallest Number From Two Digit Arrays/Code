@@ -1,0 +1,28 @@
+class Solution:
+    def minNumber(self, nums1: List[int], nums2: List[int]) -> int:
+        nums1.sort()
+        nums2.sort()
+        if nums1[0]==nums2[0]:
+            return nums1[0]
+        if nums1[0]<nums2[0]:
+            t=nums1[0]*10+nums2[0]
+            i=0
+            while i<len(nums1) and nums1[i]<=t:
+                if nums1[i] in nums2:
+                    return nums1[i]
+                i+=1
+            return t
+        else:
+            
+            if nums2[0]<nums1[0]:
+                t=nums2[0]*10+nums1[0]
+                i=0
+                while i<len(nums2) and nums2[i]<=t:
+                    if nums2[i] in nums1:
+                        return nums2[i]
+                    i+=1
+                return t
+            
+        
+
+        
