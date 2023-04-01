@@ -1,0 +1,37 @@
+class Solution:
+    def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
+        
+        
+        d=defaultdict(list)
+        for i,j in edges:
+            d[i].append(j)
+            d[j].append(i)
+        
+        
+        cycle=float(inf)
+        
+        for i in range(len(edges)):
+            q=[(i,0,None)]
+            visited=set()
+            dist={i:0}
+            while q:
+                node,length,parent=q.pop(0)
+                if node in visited:
+                    cycle_length=length+dist[parent]
+                    cycle=min(cycle,cycle_length)
+                else:
+                    visited.add(node)
+                    for neighbour in d[node]:
+                        if neighbour!=parent:
+                            if neighbour in dist:
+                                cycle_length=length+dist[neighbour]+1
+                                cycle=min(cycle,cycle_length)
+                            else:
+                                q.append((neighbour,length+1,node))
+                                dist[neighbour]=length+1
+                            
+        return cycle if cycle!=float('inf') else -1
+                        
+        
+                
+        
