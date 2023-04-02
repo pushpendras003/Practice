@@ -1,0 +1,26 @@
+class Solution:
+    def findMatrix(self, nums: List[int]) -> List[List[int]]:
+        
+        nums.sort()
+        i=0
+        cnt=0
+        while i<len(nums):
+            t=nums[i]
+            c=0
+            while i<len(nums) and nums[i]==t:
+                i+=1
+                c+=1
+            cnt=max(cnt,c)
+            
+        l=[]
+        for i in range(cnt):
+            l.append([])
+        i=0
+        while i<len(nums):
+            c=0
+            t=nums[i]
+            while i<len(nums) and nums[i]==t:
+                l[c].append(nums[i])
+                i+=1
+                c+=1
+        return l
