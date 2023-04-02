@@ -1,0 +1,20 @@
+class Solution:
+    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+
+        potions.sort()
+        n=len(potions)
+        l=[]
+        for i in range(len(spells)):
+            left=0
+            right=n
+            while left<right:
+                m=(left+right)//2
+                if potions[m]*spells[i]>=success:
+                    right=m
+                else:
+                    left=m+1
+            l.append(n-left)
+                    
+
+        return l
+            
