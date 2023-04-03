@@ -1,0 +1,11 @@
+class Solution:
+    def miceAndCheese(self, r1: List[int], r2: List[int], k: int) -> int:
+        points=0 
+        for i in range(len(r1)):
+            r1[i]=r1[i]-r2[i]
+            points+=r2[i]
+        r1.sort()
+        n=len(r1)
+        for i in range(0,k):
+            points+=r1[n-1-i]
+        return points
