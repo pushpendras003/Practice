@@ -1,0 +1,12 @@
+class Solution:
+    def partitionString(self, s: str) -> int:
+        t=""
+        c=0
+        for i in s:
+            if i not in t:
+                t+=i
+            else:
+                t=""
+                t+=i
+                c+=1
+        return c+1
