@@ -1,0 +1,22 @@
+class Solution:
+    def minimizeMax(self, nums: List[int], p: int) -> int:
+        
+        nums.sort()
+        i=0
+        j=nums[-1]-nums[0]
+        while i<j:
+            m=(i+j)//2
+            pairs=0
+            k=1
+            while k<len(nums):
+                if nums[k]-nums[k-1]<=m:
+                    pairs+=1
+                    k+=1
+                k+=1
+            if pairs>=p:
+                j=m
+            else:
+                i=m+1
+        return i
+            
+        
