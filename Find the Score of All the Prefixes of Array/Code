@@ -1,0 +1,16 @@
+class Solution:
+    def findPrefixScore(self, nums: List[int]) -> List[int]:
+        cov=[]
+        maxx=0
+        ans=[]
+        s=0
+        for i in range(len(nums)):
+            maxx=max(maxx,nums[i])
+            cov.append(maxx+nums[i])
+            s+=maxx+nums[i]
+            ans.append(s)
+        return ans
+            
+            
+            
+        
