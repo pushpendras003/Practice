@@ -1,0 +1,17 @@
+class Solution:
+    def findColumnWidth(self, grid: List[List[int]]) -> List[int]:
+        
+        m=len(grid)
+        n=len(grid[0])
+        l=[]
+        mx=0
+        for i in range(n):
+            for j in range(m):
+                t=grid[j][i]
+                a=str(t)
+                b=len(a)
+                mx=max(mx,b)
+            l.append(mx)
+            mx=0
+        return l
+        
