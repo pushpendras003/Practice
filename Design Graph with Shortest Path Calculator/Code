@@ -1,0 +1,36 @@
+class Graph:
+
+    def __init__(self, n: int, edges: List[List[int]]):
+        self.adj_list = [[] for _ in range(n)]
+        for u, v, w in edges:
+            self.adj_list[u].append((v, w))
+        
+
+    def addEdge(self, edge: List[int]) -> None:
+        u, v, w = edge
+        self.adj_list[u].append((v, w))
+        
+
+    def shortestPath(self, node1: int, node2: int) -> int:
+        
+        n = len(self.adj_list)
+        dist = [float('inf')] * n
+        dist[node1] = 0
+        heap = [(0, node1)]
+        
+        while heap:
+            d, u = heapq.heappop(heap)
+            if u == node2:
+                return d
+            if dist[u] < d:
+                continue
+            for v, w in self.adj_list[u]:
+                if dist[u] + w < dist[v]:
+                    dist[v] = dist[u] + w
+                    heapq.heappush(heap, (dist[v], v))
+        
+        return -1
+# Your Graph object will be instantiated and called as such:
+# obj = Graph(n, edges)
+# obj.addEdge(edge)
+# param_2 = obj.shortestPath(node1,node2)
