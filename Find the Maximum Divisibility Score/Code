@@ -1,0 +1,12 @@
+class Solution:
+    def maxDivScore(self, nums: List[int], divisors: List[int]) -> int:
+      max_score = -1
+      max_divisor = float('inf')
+      for divisor in divisors:
+          score = sum(1 for num in nums if num % divisor == 0)
+          if score > max_score:
+              max_score = score
+              max_divisor = divisor
+          elif score == max_score:
+              max_divisor = min(max_divisor, divisor)
+      return max_divisor
