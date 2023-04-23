@@ -1,0 +1,21 @@
+class Solution:
+    def numberOfArrays(self, s: str, k: int) -> int:
+        m=10**9+7
+        def helper(i,dp):
+            if i==len(s):
+                return 1
+            if dp[i]!=-1:
+                return dp[i]
+            ways=0
+            curnum=0
+            for j in range(i,len(s)):
+                curdig=ord(s[j])-ord('0')
+                curnum=(curnum*10)+curdig
+                if curnum<1 or curnum>k: 
+                    break
+                new_ways=helper(j+1,dp)
+                ways=(ways+new_ways)%m
+            dp[i]=ways    
+            return dp[i]
+        dp=[-1]*len(s) 
+        return helper(0,dp)
