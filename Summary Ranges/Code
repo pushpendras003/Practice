@@ -1,0 +1,21 @@
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+      if nums==[]:
+        return []
+      l=[]
+      tl=[nums[0],nums[0]]
+      for i in range(1,len(nums)):
+        if nums[i]-tl[1]==1:
+          tl[1]=nums[i]
+        else:
+          if tl[0]==tl[1]:
+            l.append(str(tl[0]))
+          else:
+            l.append(str(tl[0])+"->"+str(tl[1]))
+          tl[0]=nums[i]
+          tl[1]=nums[i]
+      if tl[0]!=tl[1]:
+        l.append(str(tl[0])+"->"+str(tl[1]))
+      else:
+        l.append(str(tl[0]))
+      return l
