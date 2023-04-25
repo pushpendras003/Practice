@@ -1,0 +1,29 @@
+class SmallestInfiniteSet:
+
+    def __init__(self):
+      self.removed=set()
+        
+
+    def popSmallest(self) -> int:
+      r=float('inf')
+      l=max(self.removed) if len(self.removed)>0 else 0
+      for i in range(1,l+1):
+        if i not in self.removed:
+          r=i
+          self.removed.add(i)
+          break
+      if r==float('inf'):
+        r=l+1
+        self.removed.add(l+1)
+      return r
+
+    def addBack(self, num: int) -> None:
+      if num in self.removed:
+        self.removed.remove(num)
+        
+
+
+# Your SmallestInfiniteSet object will be instantiated and called as such:
+# obj = SmallestInfiniteSet()
+# param_1 = obj.popSmallest()
+# obj.addBack(num)
