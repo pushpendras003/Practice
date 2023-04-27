@@ -1,0 +1,26 @@
+class Solution:
+    def luckyNumbers (self, mat: List[List[int]]) -> List[int]:
+      m=len(mat)
+      n=len(mat[0])
+      r=[]
+      for i in range(m):
+        s=float('inf')
+        for j in range(n):
+          s=min(s,mat[i][j])
+        r.append(s)
+      c=[]
+      for i in range(n):
+        s=0
+        for j in range(m):
+          s=max(s,mat[j][i])
+        c.append(s)
+      l=[]
+      for i in range(m):
+        for j in range(n):
+          if mat[i][j]==r[i] and mat[i][j]==c[j]:
+            l.append(r[i])
+      return l
+
+    
+
+
