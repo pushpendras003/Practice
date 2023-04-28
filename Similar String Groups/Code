@@ -1,0 +1,27 @@
+class Solution:
+    def numSimilarGroups(self, strs: List[str]) -> int:
+      n=len(strs)
+      groups=0
+      visited=[0]*n
+      for i in range(n):
+        if visited[i]==1: continue
+        groups+=1
+        self.dfs(i,visited,strs)
+      return groups
+        
+      
+    def dfs(self,i,visited,strs):
+      visited[i]=1
+      for j in range(len(strs)):
+        if visited[j]==1: continue
+        if self.isSimilar(strs[i],strs[j]):
+          self.dfs(j,visited,strs)
+
+    def isSimilar(self,a,b):
+      c=0
+      for i in range(len(a)):
+        if a[i]!=b[i]:c+=1
+      return c==0 or c==2
+
+
+
