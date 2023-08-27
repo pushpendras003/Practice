@@ -1,0 +1,20 @@
+class Solution:
+    def canCross(self, stones: List[int]) -> bool:
+      d=defaultdict(int)
+      for i in range(len(stones)):
+        d[stones[i]]=i
+      @cache
+      def helper(i,u):
+        print(stones[i],u)
+        if i==len(stones)-1:return True
+        if i+1<len(stones):
+          a=b=c=False
+          if u>0 and stones[i]+u in d:
+            a= helper(d[stones[i]+u],u)
+          if u>2 and stones[i]+u-1 in d:
+            b= helper(d[stones[i]+u-1],u-1)
+          if stones[i]+u+1 in d:
+            c= helper(d[stones[i]+u+1],u+1)
+        return a or b or c
+      return helper(0,0)
+          
