@@ -1,0 +1,22 @@
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+      d=defaultdict(list)
+      for i,j in adjacentPairs:
+        d[i].append(j)
+        d[j].append(i)
+      
+      root=None
+      for num in d:
+        if len(d[num])==1:
+          root=num
+          break
+        
+      def dfs(node,prev,ans):
+        ans.append(node)
+        for neighbour in d[node]:
+          if neighbour!=prev:
+            dfs(neighbour,node,ans)
+
+      ans=[]
+      dfs(root,None,ans)
+      return ans
