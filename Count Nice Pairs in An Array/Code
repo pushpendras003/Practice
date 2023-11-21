@@ -1,0 +1,25 @@
+class Solution:
+    def rev(self,i):
+      s=str(i)
+      s=s[::-1]
+      return int(s)
+    def countNicePairs(self, nums: List[int]) -> int:
+      m=10**9+7
+      n=len(nums)
+      r=[0]*n
+      for i in range(n):
+        r[i]=self.rev(nums[i])
+      arr=[0]*n
+      for i in range(n):
+        arr[i]=nums[i]-r[i]
+      ans=0
+      d=defaultdict(int)
+      for i in range(n):
+        ans=(ans+d[arr[i]])%m
+        d[arr[i]]+=1
+      return ans
+
+
+
+
+        
