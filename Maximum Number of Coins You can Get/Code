@@ -1,0 +1,12 @@
+class Solution:
+    def maxCoins(self, piles: List[int]) -> int:
+        t=len(piles)
+        n=t//3
+        piles.sort()
+        ans=0
+        c=0
+        for i in range(t-2,-1,-2):
+          if c==n:break
+          c+=1
+          ans+=piles[i]
+        return ans 
