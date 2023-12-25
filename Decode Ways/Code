@@ -1,0 +1,28 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        d=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26']
+        @cache
+        def helper(i,s):
+            if i==n:return 1
+            ans=0
+            if i+1<n and s[i+1] not in d:
+                if s[i:i+2] in d:
+                    ans+=helper(i+2,s)
+                else:
+                    self.f=False
+                    return 0
+            else:
+                if s[i]!='0':
+                    ans+=helper(i+1,s)
+                else:
+                    self.f=False
+                    return 0
+                if i+1<n:
+                    if s[i:i+2] in d:
+                        ans+=helper(i+2,s)
+            return ans 
+        n=len(s)
+        return helper(0,s)
+
+
+                
